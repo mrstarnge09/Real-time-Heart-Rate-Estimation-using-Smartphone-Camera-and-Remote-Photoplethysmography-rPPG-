@@ -1,0 +1,34 @@
+import cv2
+import numpy as np
+
+
+def estimate_heart_rate(video_frame):
+    """
+    Placeholder for rPPG Heart Rate Estimation Logic.
+    Based on Independent Component Analysis (ICA) or Chrominance-based processing[cite: 15, 34].
+    """
+    # 1. Detect Face/Skin Region (Module 1: Data Collection) [cite: 32]
+    # 2. Extract Green Channel variations (Module 2: Processing) [cite: 33]
+    # 3. Apply Temporal Filtering to mitigate noise [cite: 34]
+
+    heart_rate = 72  # Mock output for Review I demonstration [cite: 61]
+    return heart_rate
+
+
+# Initialize Camera [cite: 36]
+cap = cv2.VideoCapture(0)
+
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        break
+
+    bpm = estimate_heart_rate(frame)
+    cv2.putText(frame, f"BPM: {bpm}", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+    cv2.imshow('rPPG Heart Rate Monitor', frame)
+
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
